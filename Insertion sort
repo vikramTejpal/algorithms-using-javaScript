@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsertionSort</title>
+</head>
+
+<body>
+    <script>
+        console.log("connected")
+        insertionSort = (arr) => {
+            for (let i = 1; i < arr.length; i++) {
+                for (let j = i; j > 0; j--) {
+                    if (arr[j] < arr[j - 1]) {
+                        let temp = arr[j]
+                        arr[j] = arr[j - 1]
+                        arr[j - 1] = temp
+                        console.log("swap")
+                    } else {
+                        break
+                    }
+                }
+            }
+            return arr
+        }
+        //    console.log(insertionSort([1, 4, 2, 8, 345, 123, 43, 32, 5643, 63, 5643, 63, 123, 43, 2, 55, 1, 234, 92]))
+
+        function minBribes(arr) {
+            let sort = arr.sort((a, b) => a - b)
+            let count = 0
+            for (let i = 0; i < arr.length; i++) {
+                linearSearch = (sort, target) => {
+                    for (let i = 0; i < sort.length; i++) {
+                        if (sort[i] === target) {
+                            return i
+                        }
+                    }
+                }
+                let pos = linearSearch(sort, arr[i])
+                if ((pos - i) > 2 || (i - pos) > 2) {
+                    return "too chaotic"
+                } else if (pos - i == 0) {} else {
+                    count++
+                }
+            }
+            return count
+        }
+        console.log(minBribes([2, 1, 5, 3, 4]))
+
+        function sherlockAndAnagrams(s) {
+            let str = ""
+            for (let i = 0; i < s.length; i++) {
+                str = str + s[i]
+                for (let j = i + 1; j < s.length; j++) {
+                    if (str == s[j]) {}
+                }
+            }
+        }
+        console.log(sherlockAndAnagrams("abba"))
+    </script>
+</body>
+
+</html>
