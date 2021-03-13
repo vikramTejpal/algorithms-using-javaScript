@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECURSION</title>
+</head>
+
+<body>
+    <script>
+        //writing factorial iteratively
+        fact = (n) => {
+            let prod = 1
+            for (let i = 1; i <= n; i++) {
+                prod = prod * i
+            }
+            return prod
+        }
+        // console.log(fact(4))
+        factRecursive = (n) => {
+            if (n === 1) {
+                return 1
+            } else {
+                n = n * factRecursive(n - 1)
+                return n
+            }
+        }
+        // console.log(factRecursive(6))
+        // productOfArray([1,2,3]) // 6
+        // productOfArray([1,2,3,10]) // 60
+        function productOfArray(arr) {
+            let res = 0
+
+            function mul(arr) {
+                if (arr.length === 0) {
+                    return 1
+                } else {
+                    res = arr.pop() * mul(arr)
+                    return res
+                }
+            }
+            mul(arr)
+            return res
+        }
+        // console.log(productOfArray([1, 2, 3, 4]))
+
+        function power(num, expo) {
+            if (expo === 0) {
+                return 1
+            } else {
+                num = num * power(num, expo - 1)
+                return num
+            }
+        }
+        // console.log(power(3, 2))
+
+        function reverse(str) {
+            if (str.length === 0) {
+                return ""
+            }
+            str = str.split("")
+            str = str.pop() + reverse(str.join(""))
+            return str
+        }
+        //console.log(reverse("vikram"))
+
+        // SAMPLE INPUT / OUTPUT
+        // const isOdd = val => val % 2 !== 0;
+
+        // someRecursive([1,2,3,4], isOdd) // true
+        // someRecursive([4,6,8,9], isOdd) // true
+        // someRecursive([4,6,8], isOdd) // false
+        // someRecursive([4,6,8], val => val > 10); // false
+
+        function someRecursive(arr, callback) {
+            if (callback(arr.pop()) === true) {
+                return true
+            } else {
+                if (arr.length === 0) {
+                    return
+                }
+                someRecursive(arr, callback)
+            }
+            return false
+            // add whatever parameters you deem necessary - good luck!
+        }
+        const isOdd = val => val % 2 !== 0;
+        //console.log(someRecursive([4, 6, 83], isOdd))
+        flat = (arr) => {
+            arr = arr.flat()
+            return arr
+        }
+        //console.log(flat([1, 2, 3, [2, 35]]))
+
+        function capitalizeFirst(arr) {
+            let caps = []
+            arr.forEach(el => {
+                el = el[0].toUpperCase() + el.slice(1, el.length)
+                // console.log(el)
+                caps.push(el)
+            });
+            return caps
+        }
+        // console.log(capitalizeFirst(["bMW", "mERC", "hYUNDAI"]))
+
+
+        function nestedEvenSum(obj) {
+            let sum = 0
+
+            function sumFunction(obj) {
+                for (let key in obj) {
+                    //console.log(obj[key])
+                    if (typeof obj[key] !== "object") {
+                        if (obj[key] % 2 === 0) {
+                            sum = sum + obj[key]
+                            //console.log(sum + ":sum")
+                        }
+                    } else {
+                        sumFunction(obj[key])
+                    }
+                }
+
+            }
+            sumFunction(obj)
+            return sum
+        }
+        // console.log(nestedEvenSum({
+        //     outer: 2,
+        //     obj: {
+        //         inner: 2,
+        //         otherObj: {
+        //             superInner: 2,
+        //             notANumber: true,
+        //             alsoNotANumber: "yup"
+        //         }
+        //     }
+        // }))
+        stringifyNumbers = (obj) => {
+            console.log(obj)
+            for (let key in obj) {
+                if (typeof obj[key] === "number") {
+                    obj[key] = obj[key] + ""
+                } else if (typeof obj[key] === "object") {
+                    stringifyNumbers(obj[key])
+                } else {
+                    continue
+                }
+            }
+            return obj
+        }
+        console.log(stringifyNumbers({
+            num: 1,
+            test: [],
+            data: {
+                val: 4,
+                info: {
+                    isRight: true,
+                    random: 66
+                }
+            }
+        }))
+    </script>
+</body>
+
+</html>
